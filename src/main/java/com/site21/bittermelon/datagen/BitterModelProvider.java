@@ -116,7 +116,6 @@ public class BitterModelProvider extends ModelProvider {
         createEyeballBlister(blockModels, BitterBlocks.EYEBALL_BLISTER.get());
         createWoodenSeat(blockModels, BitterBlocks.BLACK_WOODEN_SEAT.get(), "black");
         createDrum(blockModels, BitterBlocks.METAL_DRUM.get());
-        itemModels.generateFlatItem(BitterBlocks.METAL_DRUM.get().asItem(), ModelTemplates.FLAT_ITEM);
 
         // SubstanceFluid Containers
         itemModels.generateFlatItem(BEER_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
@@ -207,6 +206,8 @@ public class BitterModelProvider extends ModelProvider {
         itemModels.generateFlatItem(DEBUG_WIRE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(METAL_ROD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(PINK_PLASTIC_SCRAP.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(BitterBlocks.SCP_330.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(BitterBlocks.METAL_DRUM.get().asItem(), ModelTemplates.FLAT_ITEM);
     }
 
     public void generateSCP1079(@NotNull ItemModelGenerators itemModels) {
