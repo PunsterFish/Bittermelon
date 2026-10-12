@@ -1,7 +1,7 @@
 package com.site21.bittermelon.init.neoforge;
 
 import com.site21.bittermelon.Bittermelon;
-import com.site21.bittermelon.common.content.blocks.barrel.DrumBlockEntity;
+import com.site21.bittermelon.common.content.blocks.drum.DrumBlockEntity;
 import com.site21.bittermelon.common.content.blocks.burrow.BurrowBlockEntity;
 import com.site21.bittermelon.common.content.blocks.container.smallbox.BoxBlockEntity;
 import com.site21.bittermelon.common.content.blocks.electronics.containmentalarm.ContainmentAlarmBlockEntity;

@@ -1,15 +1,14 @@
-package com.site21.bittermelon.common.content.blocks.barrel.client;
+package com.site21.bittermelon.common.content.blocks.drum.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import com.site21.bittermelon.common.content.blocks.barrel.DrumBlock;
-import com.site21.bittermelon.common.content.blocks.barrel.DrumBlockEntity;
+import com.site21.bittermelon.common.content.blocks.drum.DrumBlock;
+import com.site21.bittermelon.common.content.blocks.drum.DrumBlockEntity;
 import com.site21.bittermelon.common.systems.fluid.substance.SubstanceFluid;
 import com.site21.bittermelon.init.neoforge.BitterFluids;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.block.MovingBlockRenderState;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;

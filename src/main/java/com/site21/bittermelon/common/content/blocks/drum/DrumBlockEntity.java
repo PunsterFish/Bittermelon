@@ -1,4 +1,4 @@
-package com.site21.bittermelon.common.content.blocks.barrel;
+package com.site21.bittermelon.common.content.blocks.drum;
 
 import com.site21.bittermelon.common.systems.fluid.substance.MixtureOwner;
 import com.site21.bittermelon.common.systems.fluid.substance.SubstanceFluid;
@@ -23,7 +23,7 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-import static com.site21.bittermelon.common.content.blocks.barrel.DrumBlock.*;
+import static com.site21.bittermelon.common.content.blocks.drum.DrumBlock.*;
 import static net.minecraft.world.level.block.Block.UPDATE_CLIENTS;
 
 public class DrumBlockEntity extends BlockEntity implements MixtureOwner {

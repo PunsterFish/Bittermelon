@@ -1,4 +1,4 @@
-package com.site21.bittermelon.common.content.blocks.barrel.client;
+package com.site21.bittermelon.common.content.blocks.drum.client;
 
 import net.minecraft.client.renderer.block.MovingBlockRenderState;
 import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;

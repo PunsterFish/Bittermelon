@@ -2,7 +2,7 @@ package com.site21.bittermelon.init.neoforge;
 
 import com.site21.bittermelon.Bittermelon;
 import com.site21.bittermelon.common.content.blocks.SeatBlock;
-import com.site21.bittermelon.common.content.blocks.barrel.DrumBlock;
+import com.site21.bittermelon.common.content.blocks.drum.DrumBlock;
 import com.site21.bittermelon.common.content.blocks.burrow.BurrowBlock;
 import com.site21.bittermelon.common.content.blocks.container.smallbox.SmallBox;
 import com.site21.bittermelon.common.content.blocks.dirtyfloor.DirtyFloorBlock;
@@ -96,6 +96,7 @@ public class BitterBlocks {
                     .noCollision()
                     .destroyTime(-1)
                     .replaceable()
+                    .noLootTable()
             ));
 
     public static final DeferredBlock<ThermometerBlock> THERMOMETER = BLOCKS.registerBlock(
@@ -181,6 +182,7 @@ public class BitterBlocks {
                     .destroyTime(-1)
                     .sound(SoundType.EMPTY)
                     .noTerrainParticles()
+                    .noLootTable()
             )
     );
 
@@ -226,7 +228,7 @@ public class BitterBlocks {
 
     public static final DeferredBlock<SimpleFluidBlock> SIMPLE_FLUID_BLOCK = BLOCKS.registerBlock(
             "simple_fluid_block",
-            properties -> new SimpleFluidBlock(properties.mapColor(MapColor.WATER))
+            properties -> new SimpleFluidBlock(properties.mapColor(MapColor.WATER).noLootTable())
     );
 
     public static final DeferredBlock<EmergencyExitLampBlock> EMERGENCY_EXIT_LAMP = BLOCKS.registerBlock(
@@ -371,6 +373,7 @@ public class BitterBlocks {
             properties -> new BurrowBlock(properties
                     .destroyTime(0.5f)
                     .sound(SoundType.GRAVEL)
+                    .noLootTable()
             )
     );
 

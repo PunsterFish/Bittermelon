@@ -2,6 +2,7 @@ package com.site21.bittermelon.common.events;
 
 import com.site21.bittermelon.Bittermelon;
 import com.site21.bittermelon.common.systems.component.medical.Scalpel;
+import com.site21.bittermelon.datagen.BitterBlockLootProvider;
 import com.site21.bittermelon.datagen.BitterEntityLootProvider;
 import com.site21.bittermelon.init.neoforge.BitterDataComponents;
 import net.minecraft.data.loot.LootTableProvider;
@@ -31,9 +32,14 @@ public class CommonSetup {
         event.createProvider((output, lookupProvider) -> new LootTableProvider(
                 output,
                 Set.of(),
-                List.of(new LootTableProvider.SubProviderEntry(
-                        BitterEntityLootProvider::new,
-                        LootContextParamSets.ENTITY)),
+                List.of(
+                        new LootTableProvider.SubProviderEntry(
+                                BitterEntityLootProvider::new,
+                                LootContextParamSets.ENTITY),
+                        new LootTableProvider.SubProviderEntry(
+                                BitterBlockLootProvider::new,
+                                LootContextParamSets.BLOCK)
+                ),
                 lookupProvider
         ));
     }

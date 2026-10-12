@@ -1,6 +1,5 @@
 package com.site21.bittermelon.datagen;
 
-import com.site21.bittermelon.common.content.entities.scp250.SCP250;
 import com.site21.bittermelon.init.neoforge.BitterEntities;
 import com.site21.bittermelon.init.neoforge.BitterItems;
 import net.minecraft.core.HolderLookup;
