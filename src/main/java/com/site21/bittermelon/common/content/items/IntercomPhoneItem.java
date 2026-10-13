@@ -12,8 +12,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import static com.site21.bittermelon.init.neoforge.BitterDataComponents.CORD_CONNECTION;
 
@@ -23,28 +21,31 @@ public class IntercomPhoneItem extends Item {
     }
 
     @Override
-    public void inventoryTick(@NotNull ItemStack stack, @NotNull ServerLevel level, @NotNull Entity entity, @Nullable EquipmentSlot slot) {
-        BlockPos intercomPos = stack.get(CORD_CONNECTION.get());
+    public void inventoryTick(ItemStack stack, ServerLevel level, Entity entity, EquipmentSlot slot) {
+        BlockPos pos = stack.get(CORD_CONNECTION.get());
 
-        if (intercomPos == null) return;
+        if (pos == null) return;
         if (!(entity instanceof ServerPlayer player)) return;
 
-        if (level.getBlockEntity(intercomPos) instanceof IntercomBlockEntity intercom) {
+        if (level.getBlockEntity(pos) instanceof IntercomBlockEntity intercom) {
             if (slot != EquipmentSlot.MAINHAND && slot != EquipmentSlot.OFFHAND) {
-                stack.setCount(0);
-                intercom.setPhonePickedUp(false);
-                intercom.setPhoneUser(null);
-                level.playSound(null, intercomPos, SoundEvents.HEAVY_CORE_HIT, SoundSource.PLAYERS);
+                disconnectPhone(stack, level, pos, intercom);
                 player.sendSystemMessage(Component.literal("You must hold the phone.").withStyle(ChatFormatting.RED));
-            }
-
-            if (entity.distanceToSqr(intercomPos.getX(), intercomPos.getY(), intercomPos.getZ()) > 2 * 2) {
-                stack.setCount(0);
-                intercom.setPhonePickedUp(false);
-                intercom.setPhoneUser(null);
-                level.playSound(null, intercomPos, SoundEvents.HEAVY_CORE_HIT, SoundSource.PLAYERS);
+            } else if (entity.distanceToSqr(pos.getX(), pos.getY(), pos.getZ()) > 4) {
+                disconnectPhone(stack, level, pos, intercom);
                 player.sendSystemMessage(Component.literal("You must stay within range.").withStyle(ChatFormatting.RED));
             }
+
+            return;
         }
+
+        stack.remove(CORD_CONNECTION.get());
+    }
+
+    private void disconnectPhone(ItemStack stack, ServerLevel level, BlockPos pos, IntercomBlockEntity intercom) {
+            stack.setCount(0);
+            intercom.setPhonePickedUp(false);
+            intercom.setPhoneUser(null);
+            level.playSound(null, pos, SoundEvents.HEAVY_CORE_HIT, SoundSource.PLAYERS);
     }
 }

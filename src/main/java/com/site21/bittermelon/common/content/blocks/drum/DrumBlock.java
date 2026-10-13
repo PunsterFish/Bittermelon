@@ -201,21 +201,6 @@ public class DrumBlock extends Block implements Fallable, EntityBlock {
     }
 
     @Override
-    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
-        BlockState superState = super.playerWillDestroy(level, pos, state, player);
-
-        if (!level.isClientSide() && level.getBlockEntity(pos) instanceof DrumBlockEntity drum) {
-            List<SubstanceStack> substances = drum.getMixture().spreadSubstancesByVolume(drum.getVolume());
-            if (!substances.isEmpty()) {
-                SubstanceUtil.spill(level, pos, substances);
-                drum.getMixture().removeSubstances(substances);
-            }
-        }
-
-        return superState;
-    }
-
-    @Override
     protected BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
