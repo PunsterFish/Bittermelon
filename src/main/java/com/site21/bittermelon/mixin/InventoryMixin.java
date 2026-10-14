@@ -1,5 +1,7 @@
 package com.site21.bittermelon.mixin;
 
+import net.minecraft.world.entity.EntityEquipment;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -35,6 +37,10 @@ public abstract class InventoryMixin {
     @Shadow
     public abstract int getContainerSize();
 
+    @Shadow
+    @Final
+    private EntityEquipment equipment;
+
     @Inject(method = "setSelectedSlot", at = @At("HEAD"))
     private void dropHeavyOnNewSelected(int selected, CallbackInfo ci) {
         if (player.isCreative()) return;
@@ -54,8 +60,7 @@ public abstract class InventoryMixin {
         if (player.isCreative() || !itemStack.has(HEAVY)) return;
 
         int selected = getSelectedSlot();
-        boolean otherHandEmpty = getItem(selected == 0 ? 1 : 0).isEmpty();
-        if (!getItem(selected).isEmpty() || bittermelon$hasOtherHeavy(selected) || !otherHandEmpty) {
+        if (!getItem(selected).isEmpty() || bittermelon$hasOtherHeavy(selected) || !equipment.get(EquipmentSlot.OFFHAND).isEmpty()) {
             cir.setReturnValue(false);
         }
     }
