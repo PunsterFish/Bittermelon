@@ -48,6 +48,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Unit;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -143,7 +144,12 @@ public class BitterItems {
     public static final DeferredItem<BlockItem> CAGE = ITEMS.registerSimpleBlockItem(BitterBlocks.CAGE);
     public static final DeferredItem<BlockItem> EYEBALL_BLISTER = ITEMS.registerSimpleBlockItem(BitterBlocks.EYEBALL_BLISTER);
     public static final DeferredItem<BlockItem> BLACK_WOODEN_SEAT = ITEMS.registerSimpleBlockItem(BitterBlocks.BLACK_WOODEN_SEAT);
-    public static final DeferredItem<BlockItem> METAL_BARREL = ITEMS.registerSimpleBlockItem(BitterBlocks.METAL_DRUM);
+    public static final DeferredItem<BlockItem> METAL_BARREL = ITEMS.registerSimpleBlockItem(
+            BitterBlocks.METAL_DRUM,
+                    () -> new Item.Properties()
+                            .stacksTo(1)
+                            .component(HEAVY.get(), Unit.INSTANCE)
+    );
 
     public static final DeferredItem<FluidContainerItem> BEER_BOTTLE = ITEMS.register("beer_bottle", registryName ->
             new GlassFluidContainerItem(new Item.Properties()

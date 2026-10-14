@@ -1,10 +1,13 @@
 package com.site21.bittermelon.datagen;
 
 import com.site21.bittermelon.init.neoforge.BitterBlocks;
+import com.site21.bittermelon.init.neoforge.BitterDataComponents;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
 import java.util.Set;
 
@@ -68,6 +71,11 @@ public class BitterBlockLootProvider extends BlockLootSubProvider {
         dropSelf(BitterBlocks.CAGE.get());
         dropSelf(BitterBlocks.EYEBALL_BLISTER.get());
         dropSelf(BitterBlocks.BLACK_WOODEN_SEAT.get());
-        dropSelf(BitterBlocks.METAL_DRUM.get());
+        add(METAL_DRUM.get(), block -> createSingleItemTable(block)
+                .apply(CopyComponentsFunction
+                        .copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
+                        .include(BitterDataComponents.SUBSTANCE_MIXTURE.get())
+                )
+        );
     }
 }

@@ -320,6 +320,29 @@ public class SubstanceMixture implements SubstanceContainer {
         return spreadStacks;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(substances, temperature);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        SubstanceMixture that = (SubstanceMixture) obj;
+        return Float.compare(that.temperature, temperature) == 0 && Objects.equals(substances, that.substances);
+    }
+
+    public SubstanceMixture copy() {
+        List<SubstanceStack> copied = new ArrayList<>(substances.size());
+        for (SubstanceStack stack : substances) {
+            copied.add(stack.copy());
+        }
+        SubstanceMixture result = new SubstanceMixture(copied, temperature);
+        result.markSearchDirty();
+        return result;
+    }
+
     static {
         CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 SubstanceStack.CODEC.listOf().fieldOf("substances").forGetter(SubstanceMixture::getSubstances),

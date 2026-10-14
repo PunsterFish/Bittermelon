@@ -5,6 +5,7 @@
   "mixins": [
     "EntityGetterMixin",
     "EntityMixin",
+    "InventoryMixin",
     "ItemEntityMixin",
     "ItemMixin",
     "PlayerMixin",

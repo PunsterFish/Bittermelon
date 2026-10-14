@@ -20,12 +20,14 @@ import com.site21.bittermelon.common.systems.medical.legacy.compartment.VisualDa
 import com.site21.bittermelon.common.systems.medical.legacy.compartment.layer.LayerData;
 import com.site21.bittermelon.common.systems.medical.legacy.compartment.layer.Point;
 import com.site21.bittermelon.common.systems.medical.legacy.drug.DrugInstance;
+import com.site21.bittermelon.common.systems.substance.SubstanceMixture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.util.ExtraCodecs;
+import net.minecraft.util.Unit;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -335,4 +337,14 @@ public class BitterDataComponents {
             "hide_bar",
             builder -> builder.persistent(Codec.BOOL)
     );
-}
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> HEAVY = DATA_COMPONENTS.registerComponentType(
+            "heavy",
+            builder -> builder.persistent(Unit.CODEC)
+    );
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<SubstanceMixture>> SUBSTANCE_MIXTURE = DATA_COMPONENTS.registerComponentType(
+            "substance_mixture",
+            builder -> builder.persistent(SubstanceMixture.CODEC)
+    );
+ }

@@ -4,11 +4,14 @@ import com.site21.bittermelon.common.systems.fluid.substance.MixtureOwner;
 import com.site21.bittermelon.common.systems.fluid.substance.SubstanceFluid;
 import com.site21.bittermelon.common.systems.substance.SubstanceMixture;
 import com.site21.bittermelon.init.neoforge.BitterBlockEntities;
+import com.site21.bittermelon.init.neoforge.BitterDataComponents;
 import com.site21.bittermelon.init.neoforge.BitterSounds;
 import com.site21.bittermelon.util.SubstanceUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundSource;
@@ -197,6 +200,19 @@ public class DrumBlockEntity extends BlockEntity implements MixtureOwner {
                 }
             }
         });
+    }
+
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.Builder components) {
+        super.collectImplicitComponents(components);
+        components.set(BitterDataComponents.SUBSTANCE_MIXTURE, mixture.copy());
+    }
+
+    @Override
+    protected void applyImplicitComponents(DataComponentGetter components) {
+        super.applyImplicitComponents(components);
+        SubstanceMixture stored = components.get(BitterDataComponents.SUBSTANCE_MIXTURE);
+        setMixture(stored != null ? stored.copy() : new SubstanceMixture());
     }
 
     @Override
