@@ -76,7 +76,8 @@ public class BitterBlocks {
             "small_cardboard_box",
             properties -> new SmallBox(properties
                     .destroyTime(-1)
-                    .sound(SoundType.WOOL))
+                    .sound(SoundType.WOOL)
+                    .noOcclusion())
     );
 
     public static final DeferredBlock<ATMBlock> ATM = BLOCKS.registerBlock(
